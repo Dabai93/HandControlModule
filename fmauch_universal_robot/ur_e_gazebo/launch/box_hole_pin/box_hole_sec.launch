@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- send table urdf to param server -->
+  <param name="box_hole_sec_description" command="$(find xacro)/xacro $(find ur_e_description)/urdf/environment/box_hole_pin/box_hole_sec.xacro" />
+ 
+  <!-- push table_description to factory and spawn robot in gazebo -->
+  <node name="spawn_box_hole_sec" pkg="gazebo_ros" type="spawn_model" 
+    args="-urdf 
+          -param box_hole_sec_description 
+          -x 0
+          -y 0
+          -z 0.96
+          -R 0
+          -P 0
+          -Y 0
+          -model box_hole_sec" 
+    respawn="false" output="screen" />
+
+
+</launch>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- send table urdf to param server -->
+  <param name="lego1_description" command="$(find xacro)/xacro $(find ur_e_description)/urdf/environment/box_blue.xacro" />
+ 
+  <!-- push table_description to factory and spawn robot in gazebo -->
+  <node name="spawn_lego1" pkg="gazebo_ros" type="spawn_model" 
+    args="-urdf 
+          -param lego1_description 
+          -x -0.3
+          -y 0.5
+          -z 0.99
+          -model LegoBlue" 
+    respawn="false" output="screen" />
+    
+    
+    
+  <!--<param name="lego_description" command="$(find xacro)/xacro $(find ur_e_description)/urdf/environment/lego_green.xacro" />
+ 
+  <node name="spawn_lego2" pkg="gazebo_ros" type="spawn_model" 
+    args="-urdf 
+          -param lego_description 
+          -x 0.1
+          -y 0.4
+          -z 1.0 
+          -model LegoGreen" 
+    respawn="false" output="screen" /> -->
+
+</launch>

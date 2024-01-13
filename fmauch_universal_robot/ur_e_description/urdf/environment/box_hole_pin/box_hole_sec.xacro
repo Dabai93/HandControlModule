@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur">
+
+ <!-- <include file="$(find ur_description)/urdf/environment/table.xacro"/> -->
+
+
+<!--   <xacro:macro name="box_hole" params="joint link xPos yPos zPos size mass color"> -->
+
+
+  <link name="world">
+  </link>
+
+ <joint name="box_world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="box_link"/>
+    <origin xyz="0.15 0.4 0" rpy="0 0 0"/>
+  </joint> 
+ 
+  
+ <!-- <joint name="box_world_joint" type="fixed">
+    <parent link="table_link"/>
+    <child link="box_link"/>
+    <origin xyz="0.4 0.6 ${0.938 + 0.00}" rpy="0 0 0"/>
+  </joint> -->
+
+  <link name="box_link">
+
+    <collision>
+      <geometry>
+        <mesh filename="package://ur_e_description/meshes/Boxwithholeandpin/block_w_hole_m.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://ur_e_description/meshes/Boxwithholeandpin/block_w_hole_m.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="0" ixy="0.0" ixz="0.0"
+        iyy="0" iyz="0.0"
+        izz="0"/>
+    </inertial>
+  </link>
+
+  <gazebo reference="box_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+</robot>

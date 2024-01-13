@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="cube">
+
+  <link name="base_link">
+  </link>
+
+  <joint name="cube_base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="cube_link"/>
+    <axis xyz="1 1 1" />
+    <dynamics damping="0.5" friction="0.5"/>
+    <origin xyz="0 0 0.01" rpy="0 0 0"/>
+  </joint>
+
+  <link name="cube_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.051 0.031 0.041"/>
+      </geometry>
+	<mu value="0.5"/>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.031 0.031 0.031"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+		iyy="0.001" iyz="0.0"
+		izz="0.001"/>
+    </inertial>
+    <self_collide>1</self_collide>
+  </link>
+
+<!--    <gazebo reference="cube_base_link">
+    <gravity>0</gravity>
+  </gazebo>-->
+
+
+  <gazebo reference="cube_link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+
+</robot>

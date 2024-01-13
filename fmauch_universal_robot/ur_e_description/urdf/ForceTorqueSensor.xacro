@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ur">
+
+   <!-- Creating a virtual sensor joint between the ee and wrist_3 -->
+
+    <!-- Frame coincident with all-zeros TCP on UR controller -->
+    <!-- <link name="${prefix}tool0"/> -->
+    <!--     <link name="${prefix}tool0">
+       <visual>
+        <geometry>
+           <cylinder size="0.05 0.05 0.1"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+       </visual>
+
+       <collision>
+         <geometry>
+           <box size="0.05 0.05 0.05"/>
+         </geometry>
+       </collision>
+      <xacro:cylinder_inertial radius="0.05" length="0.05" mass="5.0">
+        <origin xyz="0.0 0.0 0.1" rpy="0 0 0" />
+      </xacro:cylinder_inertial>
+    </link> -->
+    
+    <!--  <joint name="FT_Sensor_joint" type="fixed">
+      <origin xyz="0 ${wrist_3_length} 0" rpy="${pi/-2.0} 0 0"/>
+      <parent link="${prefix}wrist_3_link"/>
+      <child link="${prefix}tool0"/>
+      <limit velocity="6.5" effort="1000" lower="0" upper="0" />
+    </joint>
+     -->
+      <link name="ft_sensor">
+       <visual>
+        <geometry>
+           <cylinder radius="0.0375" length=" 0.01"/>
+        </geometry>
+        <origin  xyz="0 0 0" rpy="${pi/-2.0} 0 0"/>
+        <material name="LightGrey">
+          <color rgba="0.7 0.7 0.7 1.0"/>
+        </material>
+       </visual>
+       <collision>
+         <geometry>
+           <cylinder radius="0.0375" length=" 0.01"/>
+         </geometry>
+         <origin  xyz="0 0 0" rpy="${pi/-2.0} 0 0"/>
+       </collision>
+      <inertial>
+        <mass value = "0.01" />
+        <inertia ixx="7.1441E-05"
+                 ixy="1.6499E-08"
+                 ixz="-4.9269E-09"
+                 iyy="7.146E-05"
+                 iyz="-8.5336E-09"
+                 izz="0.00013366" />
+      </inertial>
+    </link>
+
+
+
+     <joint name="FT_Sensor_joint" type="fixed">
+      <origin xyz="0 ${wrist_3_length} 0" rpy="0 0 0"/>
+      <parent link="${prefix}wrist_3_link"/>
+      <child link="ft_sensor"/>
+      <limit velocity="0" effort="0" lower="0" upper="0" />
+    </joint>
+
+    <!-- Enable the Joint Feedback -->
+  <gazebo reference="FT_Sensor_joint">
+     <provideFeedback>true</provideFeedback>  
+     <disableFixedJointLumping>true</disableFixedJointLumping>
+  </gazebo>
+
+
+</robot>

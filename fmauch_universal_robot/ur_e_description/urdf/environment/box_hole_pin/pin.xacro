@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur">
+
+
+
+<!-- Jointed with the world -->
+
+  <link name="world">
+  </link>
+
+<!--  <joint name="pin_joint" type="fixed">
+    <parent link="world"/>
+    <child link="pin_link"/>
+    <origin xyz="0.2 0.4 ${0.922 + 0.00}" rpy="0 0 0"/>
+  </joint> -->
+  
+
+ 
+
+
+
+  <link name="pin_link">
+    <collision>
+      <geometry>
+        <mesh filename="package://ur_e_description/meshes/Boxwithholeandpin/pin.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <mesh filename="package://ur_e_description/meshes/Boxwithholeandpin/pin.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia
+        ixx="0.0"
+        ixy="0.0" 
+        ixz="0.0"
+        iyy="0.0" 
+        iyz="0.0"
+        izz="0.0"/>
+    </inertial>
+  <!--  <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia
+        ixx="0.007293" ixy="0.0" ixz="0.0"
+        iyy="0.007293" iyz="0.0"
+        izz="0.00392"/>
+    </inertial> -->
+  </link>
+  
+  
+    <joint name="pin_joint" type="floating">
+    <parent link="world"/>
+    <child link="pin_link"/>
+    <origin xyz="0.15 0.4 0" rpy="0 0 0"/>
+  </joint>
+  
+    <gazebo reference="pin_link">
+    <material>Gazebo/Red</material>
+    <selfCollide>true</selfCollide>
+    <mu1>100</mu1>  
+    <mu2>100</mu2>
+    <kp>100000000</kp>
+    <kd>1</kd>  
+    <minDepth>0.00001</minDepth>  
+    <maxVel>0.0001</maxVel> 
+  </gazebo>
+ 
+
+<!-- Jointed with the table -->
+
+<!--
+  <xacro:macro name="pin" params="joint link xPos yPos zPos size mass color"> 
+  
+  <joint name="${joint}" type="floating">
+    <parent link="table_link"/>
+    <child link="pin_link"/>
+    <origin xyz="${xPos} ${yPos} ${zPos + (size/2)}" rpy="0 0 0"/>
+     <axis xyz="1 1 1" /> 
+    <dynamics friction="0.5"/>
+  </joint>
+
+
+  <link name="${link}">
+    <collision>
+      <geometry>
+        <mesh filename="package://ur_description/meshes/Boxwithholeandpin/pin.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <mesh filename="package://ur_description/meshes/Boxwithholeandpin/pin.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="${mass}"/>
+      <inertia
+        ixx="0" ixy="0.0" ixz="0.0"
+        iyy="0" iyz="0.0"
+        izz="0"/>
+    </inertial>
+  </link>
+
+  <gazebo reference="${link}">
+    <material>Gazebo/${color}</material>
+  </gazebo>
+  
+    </xacro:macro>
+-->
+
+</robot>

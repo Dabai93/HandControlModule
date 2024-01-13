@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur">
+
+  <xacro:macro name="stationbasespawn" params="joint link xPos yPos zPos size mass">
+
+  <joint name="${joint}" type="fixed">
+    <parent link="table_link"/>
+    <child link="${link}"/>
+    <origin xyz="${xPos} ${yPos} ${zPos}" rpy="0 0 0"/>
+  </joint>
+
+  <link name="${link}">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${size} ${size} 0.045"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${size} ${size} 0.045"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="${mass}"/>
+      <inertia
+        ixx="${mass/6*size*size}" ixy="0.0" ixz="0.0"
+        iyy="${mass/6*size*size}" iyz="0.0"
+        izz="${mass/6*size*size}"/>
+    </inertial>
+  </link>
+
+  <gazebo reference="${link}">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  
+  </xacro:macro>
+
+</robot>
+

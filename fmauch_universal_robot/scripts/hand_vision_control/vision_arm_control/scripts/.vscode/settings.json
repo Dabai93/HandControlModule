@@ -1,0 +1,14 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/lzn/Vision-Robotic-Arm-Gesture-Recognition-master/Demo_1_RRbot_Control/ROS/python_example_ros/devel/lib/python3/dist-packages",
+        "/home/lzn/catkin_ws/devel/lib/python3/dist-packages",
+        "/home/lzn/ur5e_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/lzn/Vision-Robotic-Arm-Gesture-Recognition-master/Demo_1_RRbot_Control/ROS/python_example_ros/devel/lib/python3/dist-packages",
+        "/home/lzn/catkin_ws/devel/lib/python3/dist-packages",
+        "/home/lzn/ur5e_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
+}
